@@ -19,7 +19,7 @@ public class JdbcTemplateUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = jdbcTemplate.queryForObject("select * from user where username = ?", User.class, username);
+        User user = jdbcTemplate.queryForObject("select username, password, state from users where username = ?", User.class, username);
 
         if (user == null){
             throw new UsernameNotFoundException("用户名/密码错误");

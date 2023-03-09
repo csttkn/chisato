@@ -12,6 +12,23 @@ public class SystemUserDetails implements UserDetails {
 
     private User user;
 
+    private enum USER_STATE {
+        OK('0'),
+        DISABLE('1'),
+        LOCK('2'),
+        EXPIRED('3');
+
+        private char value;
+        private USER_STATE(char value) {
+            this.value = value;
+        }
+
+        public boolean equals(char val){
+            return this.value == val;
+        }
+
+    }
+
     public SystemUserDetails(User user) {
         this.user = user;
     }
@@ -33,12 +50,12 @@ public class SystemUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return !USER_STATE.EXPIRED.equals(user.getState());
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return !USER_STATE.LOCK.equals(user.getState());
     }
 
     @Override
@@ -48,6 +65,6 @@ public class SystemUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return !USER_STATE.DISABLE.equals(user.getState());
     }
 }

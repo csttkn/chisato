@@ -8,3 +8,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: chisato
     password: takina
+
+
+jwt:
+  expired-time: 7*24*60*60
+  key: V7wpjLyka93piXKF

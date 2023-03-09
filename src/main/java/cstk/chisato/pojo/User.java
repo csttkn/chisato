@@ -1,35 +1,29 @@
 package cstk.chisato.pojo;
 
 
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
 public class User {
 
-    private Long id;
+    private Integer userId;
 
     private String username;
 
     private String password;
 
-    public Long getId() {
-        return id;
-    }
+    /**
+     * 状态
+     * 0：正常
+     * 1：禁用
+     * 2：锁定
+     * 3：过期
+     */
+    private Character state;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private LocalDateTime createdAt;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    private LocalDateTime updatedAt;
 }
